@@ -1,0 +1,8 @@
+<h2>記事一覧</h2>
+
+<% @articles.each do |article| %>
+  <p>
+    <%= article.title %>(<%= article.name %>)<br>
+    <%= article.text %>
+  </p>
+<% end %>
