@@ -1,6 +1,8 @@
 <h2>記事一覧</h2>
 
-<%= render :partial => "article", :collection => @articles %>
+<div class="list"> 
+  <%= render :partial => "article", :collection => @articles %>
+</div>
 <%= paginate @articles %>
 <br>
 <%= link_to '新規記事投稿', new_article_path %>
