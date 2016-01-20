@@ -1,5 +1,6 @@
 <p>
   <%= link_to article.title, article_path(article.id) %><span class="name">(<%= article.name %>)</span>
-  [<%= link_to '編集', edit_article_path(article.id) %>]<br>
+  [<%= link_to '編集', edit_article_path(article.id) %>]
+  [<%= link_to '削除', article_path(article.id), method: :delete, data: { confirm: "本当に消してよろしいですか？" } %>]<br>
   <%= article.text %>
 </p>
