@@ -47,3 +47,5 @@ end
 
 gem 'kaminari'
 
+gem 'pry-rails'
+
