@@ -37,7 +37,9 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to articles_path
+    @articles = Article.page(1).per(3)
+    # params[:page]に該当するパラメータの取得方法が不明かつ今回のテーマと逸れるため保留
+    # destroyのルーティングに:pageを付加するのが一番早い？
   end
 
   private
