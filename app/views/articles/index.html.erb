@@ -1,8 +1,13 @@
 <h2>記事一覧</h2>
 
-<div class="list"> 
+<div class="list">
   <%= render :partial => "article", :collection => @articles %>
 </div>
 <%= paginate @articles %>
 <br>
 <%= link_to '新規記事投稿', new_article_path %>
+<br> <br>
+<%= form_tag('/articles/search', :method => :post) do %>
+  <input type="text" name="keyword" placeholder="検索ワードを入力">
+  <input type="submit" value="投稿">
+<% end %>

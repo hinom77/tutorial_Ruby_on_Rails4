@@ -42,6 +42,10 @@ class ArticlesController < ApplicationController
     # destroyのルーティングに:pageを付加するのが一番早い？
   end
 
+  def search
+    @articles = Article.where('title like ?', "%#{params[:keyword]}%").order("created_at DESC").limit(20)
+  end
+
   private
     def create_params
       params.require(:article).permit(:name, :title, :text)
