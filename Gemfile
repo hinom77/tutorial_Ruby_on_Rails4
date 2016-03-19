@@ -49,3 +49,5 @@ gem 'kaminari'
 
 gem 'pry-rails'
 
+gem 'devise'
+
