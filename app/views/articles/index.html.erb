@@ -11,3 +11,10 @@
   <input type="text" name="keyword" placeholder="検索ワードを入力">
   <input type="submit" value="投稿">
 <% end %>
+<br>
+<% if user_signed_in? %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "ログイン", new_user_session_path, class: 'post' %><br>
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+<% end %>

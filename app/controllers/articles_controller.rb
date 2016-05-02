@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :redirect_to_login, :except => [:index, :show]
+
   def index
     @articles = Article.page(params[:page]).per(3)
   end
@@ -10,10 +12,11 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @name = current_user.name
   end
 
   def create
-    @article = Article.new(create_params)
+    @article = Article.new(name: current_user.name, title: create_params[:title], text: create_params[:text])
     if @article.save
       # create.html.erbの出力
     else
@@ -48,7 +51,11 @@ class ArticlesController < ApplicationController
 
   private
     def create_params
-      params.require(:article).permit(:name, :title, :text)
+      params.require(:article).permit(:title, :text)
+    end
+
+    def redirect_to_login
+      redirect_to new_user_session_path unless user_signed_in?
     end
 
 end
