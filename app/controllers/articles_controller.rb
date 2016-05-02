@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :redirect_to_login, :except => [:index, :show]
+
   def index
     @articles = Article.page(params[:page]).per(3)
   end
@@ -49,6 +51,10 @@ class ArticlesController < ApplicationController
   private
     def create_params
       params.require(:article).permit(:name, :title, :text)
+    end
+
+    def redirect_to_login
+      redirect_to new_user_session_path unless user_signed_in?
     end
 
 end
