@@ -26,11 +26,19 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    if current_user.id != @article.user_id
+      redirect_to articles_path
+    end
+
     @name = current_user.name
   end
 
   def update
     @article = Article.find(params[:id])
+    if current_user.id != @article.user_id
+      redirect_to articles_path
+    end
+
     if @article.update(title: create_params[:title], text: create_params[:text])
       redirect_to articles_path
     else
@@ -40,6 +48,10 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    if current_user.id != @article.user_id
+      redirect_to articles_path
+    end
+
     @article.destroy
     @articles = Article.page(1).per(3)
     # params[:page]に該当するパラメータの取得方法が不明かつ今回のテーマと逸れるため保留
