@@ -3,11 +3,11 @@ class ArticlesController < ApplicationController
   before_action :redirect_to_login, :except => [:index, :show]
 
   def index
-    @articles = Article.page(params[:page]).per(3)
+    @articles = Article.includes(:user).page(params[:page]).per(3)
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.includes(:user).find(params[:id])
   end
 
   def new
@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(name: current_user.name, title: create_params[:title], text: create_params[:text])
+    @article = Article.new(user_id: current_user.id, title: create_params[:title], text: create_params[:text])
     if @article.save
       # create.html.erbの出力
     else
