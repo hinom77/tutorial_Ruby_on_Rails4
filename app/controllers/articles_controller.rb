@@ -26,11 +26,12 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @name = current_user.name
   end
 
   def update
     @article = Article.find(params[:id])
-    if @article.update(create_params)
+    if @article.update(title: create_params[:title], text: create_params[:text])
       redirect_to articles_path
     else
       render :edit
