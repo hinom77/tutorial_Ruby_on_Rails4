@@ -3,7 +3,7 @@
 <%= form_for @article do |f| %>
 
   <%= f.label :名前 %><br>
-  <%= f.text_field :name %><br> <br>
+  <%= @name %><br> <br>
 
   <%= f.label :タイトル %><br>
   <%= f.text_field :title, placeholder: 'タイトルを入力してください', style: 'width: 300px;' %>

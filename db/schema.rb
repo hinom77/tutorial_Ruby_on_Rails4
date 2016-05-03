@@ -11,9 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502182136) do
+ActiveRecord::Schema.define(version: 20160502234147) do
 
   create_table "articles", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
     t.string   "name",       limit: 255
     t.string   "title",      limit: 255
     t.text     "text",       limit: 65535
